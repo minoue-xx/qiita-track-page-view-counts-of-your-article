@@ -9,9 +9,9 @@
 %% 0. Setup for Qiita API
 % Access Token for Qiita API
 accessToken=getenv('QIITAACCESSTOKEN'); % assume its set as a env variable.
-user_idList = "eigs"; % Your id
+user_id = "eigs"; % Your id
 baseurl = "https://qiita.com/api/v2";
-% これまで投稿：閲覧数順一覧 (2022/05/19更新)
+% これまで投稿：閲覧数順一覧 (2022/05/19更新) <- 結果の投稿先
 articleuri = 'https://qiita.com/eigs/items/ce39353181fee616d52e';
 
 % Specific Qiita APIs to use.
@@ -30,7 +30,6 @@ disp("Extracting article data started...")
 opts = weboptions('HeaderFields',{'Authorization',accessToken});
 % per_page is 20 by default
 per_page = 20;
-user_id = "eigs";
 
 index = 1;
 item_list = table; % table to add items
@@ -119,7 +118,11 @@ header = "これまでの投稿を過去一か月の閲覧数順に並べてい�
 + "期間: " + string(period0) + " ~ " + string(period1) + newline ...
 + "対象: @" + user_idList + " の投稿" + " ( " + height(item_list) + " 投稿)" + newline ...
 + "詳細: [GitHub: Qiita Track Page View Counts of Your Articles]" ...
-+ "(https://github.com/mathworks/qiita-track-page-view-counts-of-your-article)";
++ "(https://github.com/mathworks/qiita-track-page-view-counts-of-your-article)" + newline ...
++ newline ...
++ "作成にあたって以下を参考にいたしました。@kikd さんありがとうございます！" + newline ...
++ " - [GitHub: kikd/matlab-post-qiita](https://github.com/kikd/matlab-post-qiita)" + newline ...
++ " - [Qiita: MATLABでQiitaへ記事を投稿してみた](https://qiita.com/kikd/items/5196b3a46e291a3666fc)";
 
 md = generateMarkdown_ver2(item_list, header);
 

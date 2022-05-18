@@ -12,3 +12,8 @@ GitHub Actions で月末に定期実行させます。
 ## 作成環境
 
  - MATLAB R2022a
+
+## Acknowlegement
+
+- [kikd/matlab-post-qiita](https://github.com/kikd/matlab-post-qiita)
+- [MATLABでQiitaへ記事を投稿してみた](https://qiita.com/kikd/items/5196b3a46e291a3666fc) by [@kikd](https://qiita.com/kikd) さん
