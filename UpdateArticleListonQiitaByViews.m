@@ -12,7 +12,8 @@ accessToken=getenv('QIITAACCESSTOKEN'); % assume its set as a env variable.
 user_id = "eigs"; % Your id
 baseurl = "https://qiita.com/api/v2";
 % これまで投稿：閲覧数順一覧 (2022/05/19更新) <- 結果の投稿先
-articleuri = 'https://qiita.com/eigs/items/ce39353181fee616d52e';
+% https://qiita.com/eigs/items/ce39353181fee616d52e';
+articleuri = 'https://qiita.com/api/v2/items/ce39353181fee616d52e';
 
 % Specific Qiita APIs to use.
 % see https://qiita.com/api/v2/docs for details
@@ -116,7 +117,7 @@ item_list = sortrows(item_list,{'dviews','page_views_count'},'descend','MissingP
 header = "これまでの投稿を過去一か月の閲覧数順に並べています。" + newline ...
     + "# 集計方法" + newline ...
 + "期間: " + string(period0) + " ~ " + string(period1) + newline ...
-+ "対象: @" + user_id + " の投稿" + "（ " + height(item_list) + " 投稿）" + newline ...
++ "対象: @" + user_id + " の投稿" + "（" + height(item_list) + " 投稿）" + newline ...
 + "詳細: [GitHub: Qiita Track Page View Counts of Your Articles]" ...
 + "(https://github.com/mathworks/qiita-track-page-view-counts-of-your-article)" + newline ...
 + newline ...
@@ -128,7 +129,7 @@ md = generateMarkdown_ver2(item_list, header);
 
 %% 4. Update the list of articles on Qiita
 % Post to Qiita (POST for new article, GET for updating article)
-tags = ["matlab" "QiitaAPI" "RestAPI"];
+tags = ["matlab" "QiitaAPI" "RestAPI" "まとめ"];
 tag_count = length(tags);
 if(tag_count > 5)
     error("タグが多すぎます");
@@ -139,8 +140,8 @@ for i = 1:tag_count
     display(article_tag{i})
 end
 
-article_title = "これまで投稿：閲覧数順一覧 (" + string(period1) + "更新)";
-article_body = struct("body",md, "private", true, ...
+article_title = "これまで投稿：閲覧数順一覧（" + string(period1) + "更新）";
+article_body = struct("body",md, "private", false, ...
     "tags", {article_tag}, "title",article_title, "tweet", false);
 
 %% APIの指定とヘッダの設定
