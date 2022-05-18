@@ -102,7 +102,21 @@ else
 end
 
 %% 2. Check the view counts since the previous run
-item_list.dviews = (tViewsHistory{end,:}-tViewsHistory{end-1,:})';
+viewsHistory = rows2vars(tViewsHistory,"VariableNamingRule","preserve");
+% Article ID = OriginalVariableNames by this operation
+viewsHistory.OriginalVariableNames = string(viewsHistory.OriginalVariableNames);
+% get the difference from the previous data point
+viewsHistory.dviews = viewsHistory{:,end}-viewsHistory{:,end-1};
+
+item_list = join(item_list,viewsHistory,...
+    'LeftKeys','id',...
+    'RightKeys','OriginalVariableNames',...
+    'RightVariables','dviews');
+
+% Essentially the above is equivalent to the following line, but below
+% assumes the order of aricle id is not changed.
+% item_list.dviews = (tViewsHistory{end,:}-tViewsHistory{end-1,:})';
+
 period0 = tViewsHistory.Time(end-1);
 period1 = tViewsHistory.Time(end);
 
