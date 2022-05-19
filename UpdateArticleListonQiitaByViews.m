@@ -154,7 +154,7 @@ for i = 1:tag_count
     display(article_tag{i})
 end
 
-article_title = "これまで投稿：閲覧数順一覧（" + string(period1) + "更新）";
+article_title = "これまでの投稿まとめ：閲覧数順一覧（" + string(period1) + "更新）";
 article_body = struct("body",md, "private", false, ...
     "tags", {article_tag}, "title",article_title, "tweet", false);
 
