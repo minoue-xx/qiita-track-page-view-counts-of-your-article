@@ -202,8 +202,10 @@ for ii=1:height(tData)
 
     tags = tData.tags{ii};
     tags = string({tags.name});
-    tags = "```" + tags + "```";
+%   [```機械学習```](https://qiita.com/tags/機械学習)
+    tags = "[```" + tags + "```](https://qiita.com/tags/" + tags + ")";
     md = md + "**Tags** :" + join(tags) + newline;
+
 
     summary = tData.firstSentence(ii);
     if strlength(summary) > 150 % 長い要約は打ち切っちゃいます。
