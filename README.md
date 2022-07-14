@@ -5,6 +5,9 @@ Qiita に投稿されている特定のアカウントの記事の一覧を Qiit
 一定期間中の閲覧数順に並べたものを、Qiita の記事として自動更新するスクリプト。
 GitHub Actions で月末に定期実行させます。
 
+コード解説は[自分の Qiita 記事の閲覧数順リストを GitHub Actions で自動定期更新](https://qiita.com/eigs/items/4afebf9c7a325e206129)
+にまとめました。内容は toQiita.mlx と同じです。
+
 閲覧数（view 数）は自分の投稿であれば取得できるようなので、この例では
 は [@eigs](https://qiita.com/eigs) の投稿を対象にしており、結果は
 [これまで投稿まとめ：閲覧数順一覧](https://qiita.com/eigs/items/ce39353181fee616d52e)
