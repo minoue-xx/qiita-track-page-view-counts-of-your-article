@@ -193,7 +193,10 @@ for ii=1:height(tData)
     date.Format = 'yyyy/MM/dd';
 
     if isnan(dviews)
-        dviews = "NaN";
+        % dviews = "NaN";
+        % if dview is not available (= the article is new)
+        % replace drivew with views (total view)
+        dviews = views;
     end
 
     md = md + string(date) + " 投稿" + ": **" + string(likes) + "**" + " LGTM" ...
