@@ -117,6 +117,11 @@ item_list = join(item_list,viewsHistory,...
 % assumes the order of aricle id is not changed.
 % item_list.dviews = (tViewsHistory{end,:}-tViewsHistory{end-1,:})';
 
+% if dview is not available (= the article is new)
+% replace drivew with views (total view)
+idx = isnan(item_list.dviews);
+item_list.dviews(idx) = item_list.page_views_count(idx);
+
 period0 = tViewsHistory.Time(end-1);
 period1 = tViewsHistory.Time(end);
 
@@ -191,13 +196,6 @@ for ii=1:height(tData)
     views = tData.page_views_count(ii);
     dviews = tData.dviews(ii);
     date.Format = 'yyyy/MM/dd';
-
-    if isnan(dviews)
-        % dviews = "NaN";
-        % if dview is not available (= the article is new)
-        % replace drivew with views (total view)
-        dviews = views;
-    end
 
     md = md + string(date) + " 投稿" + ": **" + string(likes) + "**" + " LGTM" ...
         + newline ...
